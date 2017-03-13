@@ -25,9 +25,11 @@ var (
 	inCluster = flags.Bool("running-in-cluster", false,
 		`Optional, if this controller is running in a kubernetes cluster, use the
 		pod secrets for creating a Kubernetes client.`)
-	healthzPort   = flags.Int("healthz-port", healthPort, "port for healthz endpoint.")
-	configmapNs   = flags.String("configmap-ns", "", "namespace of configmap")
-	configmapName = flags.String("configmap-name", "", "configmap to put generated rule in")
+	healthzPort       = flags.Int("healthz-port", healthPort, "port for healthz endpoint.")
+	configmapNs       = flags.String("configmap-ns", "", "namespace of configmap")
+	configmapName     = flags.String("configmap-name", "", "configmap to put generated rule in")
+	warningThreshold  = flags.Float64("warning-threshold", 0.9, "threshold of warning alert")
+	criticalThreshold = flags.Float64("critical-threshold", 0.95, "threshold of critical alert")
 )
 
 func main() {

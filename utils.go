@@ -14,10 +14,13 @@ import (
 	"k8s.io/kubernetes/pkg/api/resource"
 )
 
+var (
+	warningFactor  float64 = *warningThreshold
+	criticalFactor float64 = *criticalThreshold
+)
+
 const (
-	warningFactor   float64 = 0.9
-	criticalFactor  float64 = 0.95
-	memRuleTemplate         = `
+	memRuleTemplate = `
 ALERT MemoryUsageHigh
     IF sum(container_memory_usage_bytes{id="[[ .ID ]]"}) > [[ .Target ]]
     FOR 5m
